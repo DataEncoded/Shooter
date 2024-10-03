@@ -40,6 +40,8 @@ public partial class enemy : Area2D
 		{
 			QueueFree();
 			area.GetParent().QueueFree();
+
+			EnemySpawner.Instance.stop();
 		}
 	}
 }
