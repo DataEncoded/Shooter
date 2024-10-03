@@ -6,7 +6,9 @@ using Godot;
 public partial class EnemySpawner : Node
 
 {
-    public bool Spawn { get; set; }
+    public static EnemySpawner Instance {get; private set;}
+
+    public bool Spawn { get; set; } = true;
 
     private Timer spawnTimer = new Timer();
 
@@ -14,14 +16,34 @@ public partial class EnemySpawner : Node
 
     public override void _Ready()
     {
+        Instance = this;
+
         AddChild(spawnTimer);
         spawnTimer.OneShot = true;
 
     }
 
+    public void restart()
+    {
+        stop();
+        start();
+    }
+
+    public void stop()
+    {
+        Spawn = false;
+        spawnTimer.Stop();
+    }
+
+    public void start()
+    {
+        Spawn = true;
+        spawnTimer.Start(3);
+    }
+
     public override void _Process(double delta)
     {
-        if (spawnTimer.IsStopped())
+        if (spawnTimer.IsStopped() && Spawn)
         {
             spawnTimer.Start(3);
 

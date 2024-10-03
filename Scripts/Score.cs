@@ -26,6 +26,15 @@ public partial class Score : Node
 		UpdateScore += updateScore;
 	}
 
+	public void resetScore()
+	{
+		score = 0;
+
+		textLabel = GetTree().CurrentScene.GetNode<RichTextLabel>("Score");
+
+		textLabel.Text = "0";
+	}
+
 	private void updateScore(int numberOfPoints)
 	{
 		score += numberOfPoints;

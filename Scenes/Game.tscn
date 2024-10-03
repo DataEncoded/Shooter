@@ -5,7 +5,7 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Ship" parent="." groups=["Player"] instance=ExtResource("1_lc8i1")]
-position = Vector2(568, 309)
+position = Vector2(590, 316)
 
 [node name="Score" type="RichTextLabel" parent="."]
 offset_left = 890.0
