@@ -1,19 +1,27 @@
 using Godot;
 using System;
 
-public partial class Score : RichTextLabel
+public partial class Score : Node
 {
-	private int score = 0;
+	public static Score Instance {get; private set;}
+
+	public int score = 0;
 
 	[Signal]
 	public delegate void UpdateScoreEventHandler(int numberOfPoints);
 
 	public string UpdateScoreSignal = SignalName.UpdateScore;
 
+	private RichTextLabel textLabel; 
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		Text = score.ToString();
+		Instance = this;
+
+		textLabel = GetTree().CurrentScene.GetNode<RichTextLabel>("Score");
+
+		textLabel.Text = score.ToString();
 
 		UpdateScore += updateScore;
 	}
@@ -22,6 +30,6 @@ public partial class Score : RichTextLabel
 	{
 		score += numberOfPoints;
 
-		Text = score.ToString();
+		textLabel.Text = score.ToString();
 	}
 }

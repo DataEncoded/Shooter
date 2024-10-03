@@ -7,10 +7,6 @@ public partial class Bullet : Projectile
 	[Export]
 	public float InitialSpeed {get;set;} = 6f;
 
-	static PackedScene bulletScene = ResourceLoader.Load<PackedScene>("/Scenes/Bullet.tscn");
-
-	Score gameScore;
-
 	private float rotation = 0;
 
 	// Called when the node enters the scene tree for the first time.
@@ -19,8 +15,6 @@ public partial class Bullet : Projectile
 		rotation = GlobalRotation;
 
 		Speed = Mathf.Clamp(InitialSpeed + Speed, InitialSpeed, InitialSpeed*2);
-
-		gameScore = GetTree().CurrentScene.GetNode<Score>("Score");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,10 +35,7 @@ public partial class Bullet : Projectile
 			if (area.IsInGroup("Enemy"))
 			{
 				// Add score
-				if (gameScore != null)
-				{
-					gameScore.EmitSignal(gameScore.UpdateScoreSignal, 1);
-				}
+				Score.Instance.EmitSignal(Score.Instance.UpdateScoreSignal, 1);
 			}
 
 			// Play explosion
