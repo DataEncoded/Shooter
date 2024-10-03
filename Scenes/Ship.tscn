@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://bdg033n83r7d7"]
+
+[ext_resource type="Texture2D" uid="uid://bo6bucijqks54" path="res://Sprites/Starship_A_non_thrust.png" id="1_a5d60"]
+[ext_resource type="Script" path="res://Scripts/Ship.cs" id="1_cnn07"]
+[ext_resource type="Texture2D" uid="uid://dx3tso0wodko6" path="res://Sprites/Starship_A_thrust.png" id="2_qpni8"]
+[ext_resource type="PackedScene" uid="uid://bug1auemshif3" path="res://Scenes/Bullet.tscn" id="2_x5mx4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_48gq7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_a5d60")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qpni8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_a5d60")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qpni8")
+}],
+"loop": true,
+"name": &"thrust",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m2clv"]
+size = Vector2(9, 6)
+
+[node name="Ship" type="CharacterBody2D" node_paths=PackedStringArray("Sprite")]
+scale = Vector2(6, 6)
+script = ExtResource("1_cnn07")
+Sprite = NodePath("AnimatedSprite2D")
+ProjectileScene = ExtResource("2_x5mx4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_48gq7")
+animation = &"idle"
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_m2clv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_m2clv")

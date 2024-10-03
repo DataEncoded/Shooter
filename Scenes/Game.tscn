@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cynrlvqgrrnb"]
+
+[ext_resource type="PackedScene" uid="uid://bdg033n83r7d7" path="res://Scenes/Ship.tscn" id="1_lc8i1"]
+[ext_resource type="PackedScene" uid="uid://5jf8iyrcodm2" path="res://Scenes/EnemyA.tscn" id="2_2a4j6"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="EnemyA" parent="." instance=ExtResource("2_2a4j6")]
+position = Vector2(128, 478)
+
+[node name="EnemyA2" parent="." instance=ExtResource("2_2a4j6")]
+position = Vector2(297, 477)
+
+[node name="EnemyA3" parent="." instance=ExtResource("2_2a4j6")]
+position = Vector2(548, 339)
+rotation = -3.93572
+
+[node name="EnemyA4" parent="." instance=ExtResource("2_2a4j6")]
+position = Vector2(769, 440)
+
+[node name="Ship" parent="." groups=["Player"] instance=ExtResource("1_lc8i1")]
+position = Vector2(222, 137)

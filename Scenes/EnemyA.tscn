@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://5jf8iyrcodm2"]
+
+[ext_resource type="Script" path="res://Scripts/enemy.cs" id="1_73k3v"]
+[ext_resource type="Texture2D" uid="uid://bglofkyhlmd0i" path="res://Sprites/Bad_guy_ship_A_with_thrust.png" id="1_uvwex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rvruk"]
+size = Vector2(7, 9)
+
+[node name="EnemyA" type="Area2D"]
+scale = Vector2(6, 6)
+script = ExtResource("1_73k3v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_uvwex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -1.5)
+shape = SubResource("RectangleShape2D_rvruk")
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]
